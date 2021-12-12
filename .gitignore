@@ -7,3 +7,8 @@ rosa_clustername
 clusterid
 ebs.list
 ebssnap.list
+ibmapi.key
+my_subnet_id
+my_vpc_id
+ibmaccess
+my_cos_instance_id
