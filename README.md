@@ -1,7 +1,7 @@
-# For OpenShift, Click the folder ocp-ibm-k10
-Build a ready-to-use Kasten demo environment on Red Hat OpenShift with OCS on IBM Cloud in ~45 minutes with just one command (OCP+OCS+MongoDB+K10).
+# For OpenShift, go to the folder ocp-ibm-k10
+1 command in 45 minutes to build a ready-to-use Kasten demo environment on Red Hat OpenShift with OCS on IBM Cloud (OCP+OCS+MongoDB+K10).
 
-# For ROSA - Red Hat OpenShift on AWS, Click the folder rosa-k10
+# For ROSA - Red Hat OpenShift on AWS, go to folder rosa-k10
 3 minutes to protect containers on a running ROSA cluster (MongoDB+K10+Policy+Backup).
 
 # Kasten - No. 1 Kubernetes Backup
