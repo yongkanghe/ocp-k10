@@ -10,11 +10,11 @@ This script based automation allows you to build a ready-to-use Kasten K10 demo 
 1. Log in to https://cloud.ibm.com, then open IBM Cloud Shell
 2. Clone the github repo to your local host, run below command
 ````
-git clone https://github.com/yongkanghe/ocp-ibm-k10.git
+git clone https://github.com/yongkanghe/ocp-k10.git
 ````
 3. Complete the preparation tasks first
 ````
-cd ocp-ibm-k10;./ibmprep.sh
+cd ocp-k10/ocp-ibm-k10;./ibmprep.sh
 ````
 4. Optionally, you can customize the clustername, worker flavor, zone, region, bucketname etc.
 ````
