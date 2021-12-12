@@ -2,6 +2,7 @@
 
 # Red Hat OpenShift Automation
 ## Go to the folder ocp-ibm-k10
+https://github.com/yongkanghe/ocp-k10/tree/main/ocp-ibm-k10
 1 command in 45 minutes to build a ready-to-use Kasten demo environment on Red Hat OpenShift with OCS on IBM Cloud (OCP+OCS+MongoDB+K10).
 
 # ROSA on AWS Automation
