@@ -2,7 +2,7 @@ I just want to build a Red Hat OpenShift Container Platform to play with the var
 
 It is challenging to create an OpenShift cluster from IBM Cloud if you are not familiar to it. After the OCP Cluster is up running, we still need to install Kasten, create a sample DB, create policies etc.. The whole process is not that simple.
 
-![image](https://pbs.twimg.com/media/FGZh1BPVQAEE0Qq?format=jpg&name=medium)
+![image](https://pbs.twimg.com/media/FGZh1BPVQAEE0Qq?format=jpg&name=small)
 
 This script based automation allows you to build a ready-to-use Kasten K10 demo environment running on OpenShift Container Platform on IBM Cloud in about 40 minutes. In order to demonstrate OpenShift Container Storage features, the OCP cluster will have 4 worker nodes and be built in a new vpc using a new subnet, gateway. This is bash shell based scripts which has been tested on IBM Cloud Shell in the Sydney region. 
 
