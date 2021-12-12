@@ -42,7 +42,7 @@ vim setenv.sh
 5. Remove the objects from the bucket
 
 # 3 minutes to protect containers on ROSA Cluster
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pYgJHSfogEE/0.jpg)](https://www.youtube.com/watch?v=pYgJHSfogEE)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/WDC20GQWjtE/0.jpg)](https://www.youtube.com/watch?v=WDC20GQWjtE)
 
 # OpenShift Backup and Restore
 https://blog.kasten.io/kubernetes-backup-with-openshift-container-storage
