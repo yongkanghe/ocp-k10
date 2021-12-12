@@ -1,14 +1,12 @@
 echo '-------Deploying MongoDB on ROSA and Protecting it via K10'
 starttime=$(date +%s)
-. setenv.sh
-# MY_PREFIX=$(echo $(whoami) | sed -e 's/\_//g' | sed -e 's/\.//g' | awk '{print tolower($0)}')
+
+. ./setenv.sh
+
 export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1 | sed -e 's/\"//g') 
 export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1 | sed -e 's/\"//g')
-# ROSA_BUCKET_NAME=$MY_BUCKET-$(date +%s)
-# echo $ROSA_BUCKET_NAME > rosa_bucketname
 
-# echo '-------Retrieving OpenShift Cluster kubeconfig'
-# ibmcloud oc cluster config -c $MY_PREFIX-$MY_CLUSTER --admin
+echo $MY_BUCKET-$(date +%s) > rosa_bucketname
 
 echo '-------Install K10'
 kubectl create ns kasten-io
@@ -35,7 +33,7 @@ oc annotate volumesnapshotclass csi-aws-vsc k10.kasten.io/is-snapshot-class=true
 
 echo '-------Deploying a MongoDB database'
 kubectl create namespace k10-mongodb
-#helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install mongodb bitnami/mongodb -n k10-mongodb \
   --set persistence.storageClass=gp2-csi \
   --set persistence.size=1Gi \
@@ -62,6 +60,7 @@ k10ui=http://$(kubectl get route -n kasten-io | grep k10-route | awk '{print $2}
 
 echo -e "\nCopy below token before clicking the link to log into K10 Web UI -->> $k10ui" >> rosa-token
 echo "" | awk '{print $1}' >> rosa-token
+
 sa_secret=$(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io)
 echo "Here is the token to login K10 Web UI" >> rosa-token
 echo "" | awk '{print $1}' >> rosa-token
