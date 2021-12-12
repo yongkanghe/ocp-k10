@@ -1,40 +1,14 @@
-echo '-------Deploying Postgresql on ECP and Protecting it via K10'
+echo '-------Deploying MongoDB on ROSA and Protecting it via K10'
 starttime=$(date +%s)
-. ./setenv.sh
+. setenv.sh
+# MY_PREFIX=$(echo $(whoami) | sed -e 's/\_//g' | sed -e 's/\.//g' | awk '{print tolower($0)}')
 export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1 | sed -e 's/\"//g') 
 export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1 | sed -e 's/\"//g')
-ecp_bucket_NAME=$MY_BUCKET-$(date +%s)
-echo $ecp_bucket_NAME > ecp_bucketname
+# ROSA_BUCKET_NAME=$MY_BUCKET-$(date +%s)
+# echo $ROSA_BUCKET_NAME > rosa_bucketname
 
-echo '-------Create and Annotate the volumesnapshotclass'
-#Get the name of the secret that contains credentials for HPE Datafabric cluster
-SECRETNAME=$(kubectl get sc -o=jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io\/is-default-class=="true")].parameters.csi\.storage\.k8s\.io\/provisioner-secret-name}')
-
-#Get the namespace in which the secret HPE Datafabric cluster is deployed
-SECRETNAMESPACE=$(kubectl get sc -o=jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io\/is-default-class=="true")].parameters.csi\.storage\.k8s\.io\/provisioner-secret-namespace}')
-
-#Get the HPE datafabric cluster’s rest server ip addresses
-RESTSERVER=$(kubectl get sc -o=jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io\/is-default-class=="true")].parameters.restServers}')
-
-#Get the HPE datafabric cluster’s name
-CLUSTER=$(kubectl get sc -o=jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io\/is-default-class=="true")].parameters.cluster}')
-
-cat <<EOF | kubectl apply -f -
-apiVersion: snapshot.storage.k8s.io/v1beta1
-kind: VolumeSnapshotClass
-metadata:
-  annotations:
-    k10.kasten.io/is-snapshot-class: "true"
-  name: mapr-snapshotclass
-  namespace: $SECRETNAMESPACE
-driver: com.mapr.csi-kdf
-deletionPolicy: Delete
-parameters:
-  restServers: $RESTSERVER
-  cluster: $CLUSTER
-  csi.storage.k8s.io/snapshotter-secret-name: $SECRETNAME
-  csi.storage.k8s.io/snapshotter-secret-namespace: $SECRETNAMESPACE
-EOF
+# echo '-------Retrieving OpenShift Cluster kubeconfig'
+# ibmcloud oc cluster config -c $MY_PREFIX-$MY_CLUSTER --admin
 
 echo '-------Install K10'
 kubectl create ns kasten-io
@@ -46,28 +20,34 @@ helm install k10 kasten/k10 --namespace=kasten-io \
     --set global.persistence.jobs.size=1Gi \
     --set global.persistence.logging.size=1Gi \
     --set global.persistence.grafana.size=1Gi \
-    --set externalGateway.create=true \
+    --set scc.create=true \
+    --set route.enabled=true \
     --set auth.tokenAuth.enabled=true \
     --set grafana.enabled=true \
-    --set grafana.persistence.storageClassName=hcp-mapr-cluster \
-    --set global.persistence.storageClass=hcp-mapr-cluster 
+    --set grafana.persistence.storageClassName=gp2-csi \
+    --set global.persistence.storageClass=gp2-csi
 
 echo '-------Set the default ns to k10'
 kubectl config set-context --current --namespace kasten-io
 
-echo '-------Deploying a Postgresql database'
-kubectl create namespace k10-postgresql
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install --namespace k10-postgresql postgres bitnami/postgresql \
+echo '-------Annotate the volumesnapshotclass'
+oc annotate volumesnapshotclass csi-aws-vsc k10.kasten.io/is-snapshot-class=true
+
+echo '-------Deploying a MongoDB database'
+kubectl create namespace k10-mongodb
+#helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install mongodb bitnami/mongodb -n k10-mongodb \
+  --set persistence.storageClass=gp2-csi \
   --set persistence.size=1Gi \
-  --set persistence.storageClass=hcp-mapr-cluster \
-  --set volumePermissions.enabled=true
+  --set volumePermissions.securityContext.runAsUser="auto" \
+  --set podSecurityContext.fsGroup="auto" \
+  --set podSecurityContext.enabled=false \
+  --set containerSecurityContext.enabled=false 
 
 echo '-------Output the Cluster ID'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
-echo "" | awk '{print $1}' > ecp-token
-echo My Cluster ID is $clusterid >> ecp-token
-echo "" | awk '{print $1}' > ecp-token
+echo "" | awk '{print $1}' > rosa-token
+echo My Cluster ID is $clusterid >> rosa-token
 
 echo '-------Creating a S3 profile secret'
 kubectl create secret generic k10-s3-secret \
@@ -78,21 +58,17 @@ kubectl create secret generic k10-s3-secret \
 
 echo '-------Wait for 1 or 2 mins for the Web UI IP and token'
 kubectl wait --for=condition=ready --timeout=180s -n kasten-io pod -l component=jobs
-kubectl expose service gateway -n kasten-io --type=NodePort --name=gateway-nodeport
-kubectl label service gateway-nodeport hpecp.hpe.com/hpecp-internal-gateway=true -n kasten-io
+k10ui=http://$(kubectl get route -n kasten-io | grep k10-route | awk '{print $2}')/k10/#
 
+echo -e "\nCopy below token before clicking the link to log into K10 Web UI -->> $k10ui" >> rosa-token
+echo "" | awk '{print $1}' >> rosa-token
 sa_secret=$(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io)
-echo "Here is the token to login K10 Web UI" >> ecp-token
-echo "" | awk '{print $1}' >> ecp-token
-kubectl get secret $sa_secret --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode | awk '{print $1}' >> ecp-token
+echo "Here is the token to login K10 Web UI" >> rosa-token
+echo "" | awk '{print $1}' >> rosa-token
+kubectl get secret $sa_secret --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode | awk '{print $1}' >> rosa-token
+#kubectl get secret $sa_secret -n kasten-io -o json | jq '.metadata.annotations."openshift.io/token-secret.value"' | sed -e 's/\"//g' >> rosa-token
 
-echo "" | awk '{print $1}' >> ecp-token
-
-nodeport=$(kubectl describe svc gateway-nodeport -n kasten-io | grep Annotations | awk '{print $3}')
-k10ui=http://$nodeport/k10/#
-
-echo -e "\nCopy the token before clicking the link to log into K10 Web UI -->> $k10ui" >> ecp-token
-echo "" | awk '{print $1}' >> ecp-token
+echo "" | awk '{print $1}' >> rosa-token
 
 echo '-------Waiting for K10 services are up running in about 1 or 2 mins'
 kubectl wait --for=condition=ready --timeout=600s -n kasten-io pod -l component=catalog
@@ -116,7 +92,7 @@ spec:
         namespace: kasten-io
     type: ObjectStore
     objectStore:
-      name: $(cat ecp_bucketname)
+      name: $(cat rosa_bucketname)
       objectStoreType: S3
       region: $MY_REGION
 EOF
@@ -126,7 +102,7 @@ cat <<EOF | kubectl apply -f -
 apiVersion: config.kio.kasten.io/v1alpha1
 kind: Policy
 metadata:
-  name: k10-postgresql-backup
+  name: k10-mongodb-backup
   namespace: kasten-io
 spec:
   comment: ""
@@ -166,7 +142,7 @@ spec:
       - key: k10.kasten.io/appNamespace
         operator: In
         values:
-          - k10-postgresql
+          - k10-mongodb
 EOF
 
 sleep 7
@@ -182,16 +158,16 @@ metadata:
 spec:
   subject:
     kind: Policy
-    name: k10-postgresql-backup
+    name: k10-mongodb-backup
     namespace: kasten-io
 EOF
 
 echo '-------Accessing K10 UI'
-cat ecp-token
+cat rosa-token
 
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
-echo "-------Total time is ONLY $(($duration / 60)) minutes $(($duration % 60)) seconds for Kasten K10+Postgresql+Policy+OnDemandBackup."
+echo "-------Total time is ONLY $(($duration / 60)) minutes $(($duration % 60)) seconds for Kasten K10+MongoDB+Policy+OnDemandBackup."
 echo "" | awk '{print $1}'
 echo "-------Created by Yongkang"
 echo "-------Email me if any suggestions or issues he@yongkang.cloud"

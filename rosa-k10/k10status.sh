@@ -1,6 +1,3 @@
-#This is the script for you to verify the backup and export status of a specific namespace
-#Run ./k10status and input the namespace, the backup and and export status will be reported.
-
 echo -n "Enter your namespace and press [ENTER]: "
 read my_namespace
 kubectl get backupactions.actions.kio.kasten.io -n $my_namespace | grep -v NAME | head -1 | awk '{print $1}' > backupname
