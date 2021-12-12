@@ -6,7 +6,7 @@
 1 command in 45 minutes to build a ready-to-use Kasten demo environment on Red Hat OpenShift with OCS on IBM Cloud (OCP+OCS+MongoDB+K10).
 
 # ROSA on AWS Automation
-## Go to the folder [rosa-k10] (https://github.com/yongkanghe/ocp-k10/tree/main/rosa-k10)
+## Go to the folder [rosa-k10](https://github.com/yongkanghe/ocp-k10/tree/main/rosa-k10)
 
 3 minutes to protect containers on a running ROSA cluster (MongoDB+K10+Policy+Backup).
 
