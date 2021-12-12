@@ -4,7 +4,7 @@ I just want to build a Red Hat OpenShift Service on AWS (aka ROSA) to learn the 
 
 This script based automation allows you to build a ready-to-use Kasten K10 demo environment on a running Red Hat OpenShift Service on AWS Cloud in 3 minutes. If you don't have a ROSA Cluster, you can watch the Youtube video and follow the guide to build a ROSA cluster on AWS Cloud. Once the ROSA Cluster is up running, you can proceed to the next steps. 
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/KUlH2o405oI/0.jpg)](https://www.youtube.com/watch?v=KUlH2o405oI)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/amLN6-JxygU/0.jpg)](https://www.youtube.com/watch?v=amLN6-JxygU)
 
 # Here're the prerequisities. 
 1. Log in to the terminal where you can access the ROSA Cluster via Kubectl
@@ -44,7 +44,7 @@ vim setenv.sh
 # 3 minutes to protect containers on ROSA Cluster
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pYgJHSfogEE/0.jpg)](https://www.youtube.com/watch?v=pYgJHSfogEE)
 
-# ROSA Backup and Restore
+# OpenShift Backup and Restore
 https://blog.kasten.io/kubernetes-backup-with-openshift-container-storage
 
 # Kasten - No. 1 Kubernetes Backup
