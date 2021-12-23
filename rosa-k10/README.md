@@ -1,3 +1,5 @@
+#### Follow [@YongkangHe](https://twitter.com/yongkanghe) on Twitter, Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
+
 I just want to build a Red Hat OpenShift Service on AWS (aka ROSA) to learn the various Data Management capabilities e.g. Backup/Restore, Disaster Recovery and Application Mobility. It is challenging to create a ROSA cluster if you are not familiar to it. After the ROSA Cluster is up running, we still need to install Kasten, create a sample DB, create policies etc.. The whole process is not that simple.
 
 ![image](https://pbs.twimg.com/media/FGZd5pBVgAE4Rp3?format=png&name=small)
@@ -5,6 +7,7 @@ I just want to build a Red Hat OpenShift Service on AWS (aka ROSA) to learn the 
 This script based automation allows you to build a ready-to-use Kasten K10 demo environment on a running Red Hat OpenShift Service on AWS Cloud in 3 minutes. If you don't have a ROSA Cluster, you can watch the Youtube video and follow the guide to build a ROSA cluster on AWS Cloud. Once the ROSA Cluster is up running, you can proceed to the next steps. 
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/amLN6-JxygU/0.jpg)](https://www.youtube.com/watch?v=amLN6-JxygU)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # Here're the prerequisities. 
 1. Log in to the terminal where you can access the ROSA Cluster via Kubectl
@@ -43,6 +46,7 @@ vim setenv.sh
 
 # 3 minutes to protect containers on ROSA Cluster
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/WDC20GQWjtE/0.jpg)](https://www.youtube.com/watch?v=WDC20GQWjtE)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # OpenShift Backup and Restore
 https://blog.kasten.io/kubernetes-backup-with-openshift-container-storage
@@ -58,7 +62,7 @@ http://k10.yongkang.cloud
 
 # Contributors
 
-### [Yongkang He](http://yongkang.cloud)
+#### Follow [Yongkang He](http://yongkang.cloud) on LinkedIn, Join [Kubernetes Data Management](https://www.linkedin.com/groups/13983251) LinkedIn Group
 
 
 
