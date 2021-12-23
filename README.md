@@ -1,3 +1,5 @@
+#### Follow [@YongkangHe](https://twitter.com/yongkanghe) on Twitter, Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
+
 ![image](https://blog.kasten.io/hs-fs/hubfs/Partner%20Images/Red%20Hat/kasten+openshift-social.png?width=500&name=kasten+openshift-social.png)
 
 # Red Hat OpenShift Automation
@@ -21,7 +23,7 @@ http://k10.yongkang.cloud
 
 # Contributors
 
-### [Yongkang He](http://yongkang.cloud)
+#### Follow [Yongkang He](http://yongkang.cloud) on LinkedIn, Join [Kubernetes Data Management](https://www.linkedin.com/groups/13983251) LinkedIn Group
 
 
 
