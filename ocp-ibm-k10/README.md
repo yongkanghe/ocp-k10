@@ -1,3 +1,5 @@
+#### Follow [@YongkangHe](https://twitter.com/yongkanghe) on Twitter, Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
+
 I just want to build a Red Hat OpenShift Container Platform to play with the various Data Management capabilities e.g. Backup/Restore, Disaster Recovery and Application Mobility. 
 
 It is challenging to create an OpenShift cluster from IBM Cloud if you are not familiar to it. After the OCP Cluster is up running, we still need to install Kasten, create a sample DB, create policies etc.. The whole process is not that simple.
@@ -53,12 +55,15 @@ git clone https://github.com/yongkanghe/ocp-ibm-k10.git;cd ocp-ibm-k10;./ibmprep
 
 # Learn how to automate OCP, OCS, MongoDB and K10.
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/HohBSwDjtmM/0.jpg)](https://www.youtube.com/watch?v=HohBSwDjtmM)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # Learn how to build an OCP cluster via Web Console
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/FDvY9PSxgAQ/0.jpg)](https://www.youtube.com/watch?v=FDvY9PSxgAQ)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # Learn how to backup/restore containers on OCP Cluster
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/zMKIOCuEPyI/0.jpg)](https://www.youtube.com/watch?v=zMKIOCuEPyI)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # For more details about OCP Backup and Restore
 https://blog.kasten.io/kubernetes-backup-with-openshift-container-storage
@@ -73,7 +78,7 @@ http://k10.yongkang.cloud
 
 # Contributors
 
-### [Yongkang He](http://yongkang.cloud)
+#### Follow [Yongkang He](http://yongkang.cloud) on LinkedIn, Join [Kubernetes Data Management](https://www.linkedin.com/groups/13983251) LinkedIn Group
 ### [Adrian Gigante](https://www.linkedin.com/in/adrian-gigante/)
 ### [Michael Nguyen](https://www.linkedin.com/in/michael-nguyen-29811034/)
 ### [Hitesh Kataria](https://www.linkedin.com/in/hitesh-kataria09/)
