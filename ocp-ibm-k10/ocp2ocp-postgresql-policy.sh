@@ -45,7 +45,7 @@ spec:
       - key: k10.kasten.io/appNamespace
         operator: In
         values:
-          - k10-postgresql-new
+          - k10-postgresql
 EOF
 
 sleep 5
