@@ -16,7 +16,7 @@ export AZURE_STORAGE_KEY=$(az storage account keys list -g $ARO_RG -n $MY_PREFIX
 echo '-------Updating a azure disk vsc'
 oc annotate volumesnapshotclass csi-azuredisk-vsc k10.kasten.io/is-snapshot-class=true
 # cat <<EOF | kubectl apply -f -
-# apiVersion: snapshot.storage.k8s.io/v1beta1
+# apiVersion: snapshot.storage.k8s.io/v1
 # kind: VolumeSnapshotClass
 # metadata:
 #   annotations:
@@ -44,8 +44,7 @@ helm install k10 kasten/k10 --namespace=kasten-io \
     --set global.persistence.grafana.size=1Gi \
     --set scc.create=true \
     --set route.enabled=true \
-    --set auth.tokenAuth.enabled=true \
-    --set global.persistence.storageClass=managed-csi
+    --set auth.tokenAuth.enabled=true
 
 echo '-------Set the default ns to k10'
 kubectl config set-context --current --namespace kasten-io
@@ -55,8 +54,8 @@ kubectl create namespace yong-postgresql
 oc adm policy add-scc-to-user anyuid -z default -n yong-postgresql
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install --namespace yong-postgresql postgres bitnami/postgresql \
-  --set primary.persistence.size=1Gi \
-  --set persistence.storageClass=managed-csi
+  --set primary.persistence.size=1Gi
+  # --set persistence.storageClass=managed-csi
 
 echo '-------Output the Cluster ID'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
@@ -72,7 +71,8 @@ echo "" | awk '{print $1}' >> aro_token
 sa_secret=$(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io)
 echo "Copy/Paste the token below to Signin K10 Web UI" >> aro_token
 echo "" | awk '{print $1}' >> aro_token
-kubectl get secret $sa_secret --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode | awk '{print $1}' >> aro_token
+# kubectl get secret $sa_secret --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode | awk '{print $1}' >> aro_token
+kubectl get secret $sa_secret -n kasten-io -o json | jq '.metadata.annotations."openshift.io/token-secret.value"' | sed -e 's/\"//g' >> aro_token
 echo "" | awk '{print $1}' >> aro_token
 
 echo '-------Waiting for K10 services are up running in about 1 or 2 mins'
