@@ -11,5 +11,5 @@ export MY_PREFIX=$(echo $(whoami) | sed -e 's/\_//g' | sed -e 's/\.//g' | awk '{
 # export MY_VMSIZE=Standard_D2as_v4   #Customize your VM size
 # export MY_LOCATION=centralindia     #Customize your location
 # export MY_REGION="Central India"    #Customize region for Blob Storage
-# export K8S_VERSION=1.21                     #Customize your Kubernetes Version
+# export K8S_VERSION=1.21             #Customize your Kubernetes Version
 
