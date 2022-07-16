@@ -16,6 +16,9 @@
 
 3 minutes to protect containers on a running ROSA cluster (MongoDB+K10+Policy+Backup).
 
+# ARO on Azure Automation - WORK IN PROGRESS
+## Go to the folder [aro-k10](https://github.com/yongkanghe/ocp-k10/tree/main/aro-k10)
+
 # How to migrate containers on OCP Cluster
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mjG-GOnJ-Lo/0.jpg)](https://www.youtube.com/watch?v=mjG-GOnJ-Lo)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
