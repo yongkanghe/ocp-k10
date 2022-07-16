@@ -44,7 +44,7 @@ PASSWORD=$(az aro list-credentials --name $MY_CLUSTER --resource-group $MY_PREFI
 
 apiServer=$(az aro show -g $MY_PREFIX-$MY_GROUP -n $MY_CLUSTER --query apiserverProfile.url -o tsv)
 
-oc login $apiServer -u kubeadmin -p $PASSWORD
+oc login $apiServer -u kubeadmin -p $PASSWORD --insecure-skip-tls-verify
 
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
