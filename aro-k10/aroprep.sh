@@ -5,7 +5,7 @@ tar -zxvf openshift-client-linux.tar.gz
 echo 'export PATH=$PATH:~/ocp-k10/aro-k10' >> ~/.bashrc && source ~/.bashrc
 rm openshift-client-linux.tar.gz
 
-./createapp.sh
+~/ocp-k10/aro-k10/createapp.sh
 
 clear
 
