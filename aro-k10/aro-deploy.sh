@@ -39,11 +39,19 @@ az aro create \
   --worker-subnet worker-subnet4yong1 \
   --pull-secret @pull-secret.txt
 
+echo '-------Create a Azure Storage account'
+ARO_RG=$(az group list -o table | grep aro-rg4yong1 | awk '{print $1}')
+az storage account create -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID -g $ARO_RG -l $ARO_MY_LOCATION --sku Standard_LRS
+echo $(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1) > aro_az_storage_key
+
 PASSWORD=$(az aro list-credentials --name $ARO_MY_CLUSTER --resource-group $ARO_MY_PREFIX-$ARO_MY_GROUP -o tsv --query kubeadminPassword)
 
 apiServer=$(az aro show -g $ARO_MY_PREFIX-$ARO_MY_GROUP -n $ARO_MY_CLUSTER --query apiserverProfile.url -o tsv)
 
 oc login $apiServer -u kubeadmin -p $PASSWORD --insecure-skip-tls-verify
+echo "" | awk '{print $1}'
+oc get no
+echo "" | awk '{print $1}'
 
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
