@@ -54,7 +54,7 @@ kubectl create namespace yong-postgresql
 oc adm policy add-scc-to-user anyuid -z default -n yong-postgresql
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install --namespace yong-postgresql postgres bitnami/postgresql \
-  --set primary.persistence.size=1Gi
+  --set primary.persistence.size=1Gi \
   --set global.storageClass=managed-csi
 
 echo '-------Output the Cluster ID'
