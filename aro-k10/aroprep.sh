@@ -7,7 +7,9 @@ rm openshift-client-linux.tar.gz
 
 ./createapp.sh
 
-echo -n "Log into Red Hat Cloud Console https://cloud.redhat.com, Click OpenShift, Click Downloads, Scroll down to the bottom, Click Copy button under Tokens section, Paste your pull secret and press [ENTER]: "
+echo -n "Log into Red Hat Cloud Console https://cloud.redhat.com"
+echo -n "Click OpenShift, Click Downloads, Scroll down to the bottom"
+echo -n "Click Copy button under Tokens section, Paste your pull secret and press [ENTER]: "
 read pullsecret
 echo "" | awk '{print $1}'
 echo $pullsecret > pull-secret.txt
