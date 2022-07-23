@@ -1,4 +1,4 @@
-echo '-------Creating an ARO Cluster only (typically about 35 mins)'
+echo '-------Creating an ARO Cluster only (typically ~35 mins)'
 starttime=$(date +%s)
 . ./setenv.sh
 
