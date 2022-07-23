@@ -2,7 +2,7 @@ echo '-------Deleting an ARO Cluster only (typically about 35 mins)'
 starttime=$(date +%s)
 . ./setenv.sh
 
-az aro delete --resource-group $MY_PREFIX-$MY_GROUP --name $MY_CLUSTER -y
+az aro delete --resource-group $MY_PREFIX-$ARO_MY_GROUP --name $ARO_MY_CLUSTER -y
 
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
