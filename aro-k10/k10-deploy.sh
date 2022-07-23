@@ -4,14 +4,14 @@ starttime=$(date +%s)
 MY_PREFIX=$(echo $(whoami) | sed -e 's/\_//g' | sed -e 's/\.//g' | awk '{print tolower($0)}')
 
 echo '-------Exporting the Azure Tenant, Client, Secret'
-AZURE_TENANT_ID=$(cat aks4yong1app | grep tenant | awk '{print $2}' | sed -e 's/\"//g')
-AZURE_CLIENT_ID=$(cat aks4yong1app | grep appId | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
-AZURE_CLIENT_SECRET=$(cat aks4yong1app | grep password | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
+AZURE_TENANT_ID=$(cat aro4yong1app | grep tenant | awk '{print $2}' | sed -e 's/\"//g')
+AZURE_CLIENT_ID=$(cat aro4yong1app | grep appId | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
+AZURE_CLIENT_SECRET=$(cat aro4yong1app | grep password | awk '{print $2}' | sed -e 's/\"//g' | sed -e 's/\,//g')
 
 echo '-------Create a Azure Storage account'
 ARO_RG=$(az group list -o table | grep rg4yong1 | awk '{print $1}')
-az storage account create -n $MY_PREFIX$AZURE_STORAGE_ACCOUNT_ID -g $ARO_RG -l $MY_LOCATION --sku Standard_LRS
-export AZURE_STORAGE_KEY=$(az storage account keys list -g $ARO_RG -n $MY_PREFIX$AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1)
+az storage account create -n $MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID -g $ARO_RG -l $ARO_MY_LOCATION --sku Standard_LRS
+export ARO_AZURE_STORAGE_KEY=$(az storage account keys list -g $ARO_RG -n $MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1)
 
 echo '-------Updating a azure disk vsc'
 oc annotate volumesnapshotclass csi-azuredisk-vsc k10.kasten.io/is-snapshot-class=true
