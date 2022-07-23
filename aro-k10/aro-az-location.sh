@@ -25,7 +25,7 @@ spec:
         namespace: kasten-io
     type: ObjectStore
     objectStore:
-      name: $MY_PREFIX-$ARO_MY_CONTAINER
+      name: $ARO_MY_PREFIX-$ARO_MY_CONTAINER
       objectStoreType: AZ
       region: $ARO_MY_REGION
 EOF
