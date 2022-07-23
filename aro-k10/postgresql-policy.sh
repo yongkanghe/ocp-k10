@@ -15,7 +15,7 @@ spec:
       backupParameters:
         profile:
           namespace: kasten-io
-          name: $MY_OBJECT_STORAGE_PROFILE
+          name: $ARO_MY_OBJECT_STORAGE_PROFILE
     - action: export
       exportParameters:
         frequency: "@hourly"
@@ -23,7 +23,7 @@ spec:
           name: ""
           namespace: ""
         profile:
-          name: $MY_OBJECT_STORAGE_PROFILE
+          name: $ARO_MY_OBJECT_STORAGE_PROFILE
           namespace: kasten-io
         receiveString: ""
         exportData:
