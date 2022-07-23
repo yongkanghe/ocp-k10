@@ -1,11 +1,11 @@
 echo "-------Install oc client, create an app registration"
-cd ~/aro-k10
+cd ~/ocp-k10/aro-k10
 wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz
 tar -zxvf openshift-client-linux.tar.gz
 echo 'export PATH=$PATH:~/ocp-k10/aro-k10' >> ~/.bashrc && source ~/.bashrc
 rm openshift-client-linux.tar.gz
 
-~/ocp-k10/aro-k10/createapp.sh
+./createapp.sh
 
 echo -n "Log into Red Hat Cloud Console https://cloud.redhat.com, Click OpenShift, Click Downloads, Scroll down to the bottom, Click Copy button under Tokens section, Paste your pull secret and press [ENTER]: "
 read pullsecret
