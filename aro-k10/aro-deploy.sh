@@ -44,6 +44,10 @@ ARO_RG=$(az group list -o table | grep aro-rg4yong1 | awk '{print $1}')
 az storage account create -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID -g $ARO_RG -l $ARO_MY_LOCATION --sku Standard_LRS
 echo $(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1) > aro_az_storage_key
 
+# oc annotate sc managed-premium storageclass.kubernetes.io/is-default-class-
+# oc annotate sc managed-csi storageclass.kubernetes.io/is-default-class=true
+# oc annotate volumesnapshotclass csi-azuredisk-vsc k10.kasten.io/is-snapshot-class=true
+
 PASSWORD=$(az aro list-credentials --name $ARO_MY_CLUSTER --resource-group $ARO_MY_PREFIX-$ARO_MY_GROUP -o tsv --query kubeadminPassword)
 
 apiServer=$(az aro show -g $ARO_MY_PREFIX-$ARO_MY_GROUP -n $ARO_MY_CLUSTER --query apiserverProfile.url -o tsv)
