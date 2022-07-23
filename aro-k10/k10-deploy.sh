@@ -13,7 +13,7 @@ AZURE_CLIENT_SECRET=$(cat aro4yong1app | grep password | awk '{print $2}' | sed 
 # az storage account create -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID -g $ARO_RG -l $ARO_MY_LOCATION --sku Standard_LRS
 # export ARO_AZURE_STORAGE_KEY=$(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1)
 
-echo '-------Updating a azure disk vsc'
+echo '-------Set the default sc & vsc'
 oc annotate volumesnapshotclass csi-azuredisk-vsc k10.kasten.io/is-snapshot-class=true
 # cat <<EOF | kubectl apply -f -
 # apiVersion: snapshot.storage.k8s.io/v1
@@ -27,6 +27,8 @@ oc annotate volumesnapshotclass csi-azuredisk-vsc k10.kasten.io/is-snapshot-clas
 # parameters:
 #   incremental: "true"
 # EOF
+oc annotate sc managed-premium storageclass.kubernetes.io/is-default-class-
+oc annotate sc managed-csi storageclass.kubernetes.io/is-default-class=true
 
 echo '-------Install K10'
 kubectl create ns kasten-io
@@ -45,6 +47,7 @@ helm install k10 kasten/k10 --namespace=kasten-io \
     --set scc.create=true \
     --set route.enabled=true \
     --set auth.tokenAuth.enabled=true
+# --set global.persistence.storageClass=managed-csi
 
 echo '-------Set the default ns to k10'
 kubectl config set-context --current --namespace kasten-io
@@ -54,8 +57,8 @@ kubectl create namespace yong-postgresql
 oc adm policy add-scc-to-user anyuid -z default -n yong-postgresql
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install --namespace yong-postgresql postgres bitnami/postgresql \
-  --set primary.persistence.size=1Gi \
-  --set global.storageClass=managed-csi
+  --set primary.persistence.size=1Gi
+# --set global.storageClass=managed-csi
 
 echo '-------Output the Cluster ID'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
