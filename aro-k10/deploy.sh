@@ -1,4 +1,4 @@
-echo '-------Creating an ARO Cluster + K10 (~35 mins)'
+echo '-------Creating an ARO Cluster + K10 (~40 mins)'
 starttime=$(date +%s)
 
 #Create an ARO cluster
