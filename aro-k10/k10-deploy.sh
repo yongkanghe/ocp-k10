@@ -55,7 +55,7 @@ oc adm policy add-scc-to-user anyuid -z default -n yong-postgresql
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install --namespace yong-postgresql postgres bitnami/postgresql \
   --set primary.persistence.size=1Gi
-  # --set persistence.storageClass=managed-csi
+  --set global.storageClass=managed-csi
 
 echo '-------Output the Cluster ID'
 clusterid=$(kubectl get namespace default -ojsonpath="{.metadata.uid}{'\n'}")
