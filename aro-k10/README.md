@@ -6,7 +6,7 @@ It is challenging to create an ARO cluster from Azure Cloud if you are not famil
 
 ![image](https://pbs.twimg.com/media/FGZh1BPVQAEE0Qq?format=jpg&name=small)
 
-This script based automation allows you to build a Ready-to-Use Kasten K10 demo environment running on ARO Cluster on Azure in about 35 minutes. In order to demonstrate Container Backup capabilities, an Azure Blob Storage account will be created. And this will be built in a new vnet using a new subnet etc.. This is bash shell based scripts which has been tested on Azure Cloud Shell in the West US region. 
+This script based automation allows you to build a Ready-to-Use Kasten K10 demo environment running on ARO Cluster on Azure in about 35 minutes. In order to demonstrate Container Backup capabilities, an Azure Blob Storage account will be created. And this will be built in a new vnet with new subnets etc.. This is bash shell based scripts which has been tested on Azure Cloud Shell in the West US region. 
 
 # Here're the prerequisities. 
 1. Log in to https://portal.azure.com, then open Azure Cloud Shell
