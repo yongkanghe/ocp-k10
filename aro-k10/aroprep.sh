@@ -2,7 +2,13 @@ echo "-------Install oc client, create an app registration"
 cd ~/ocp-k10/aro-k10
 wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz
 tar -zxvf openshift-client-linux.tar.gz oc
-# echo 'export PATH=$PATH:~/ocp-k10/aro-k10' >> ~/.bashrc && source ~/.bashrc
+
+cat ~/.bashrc | grep aro-k10
+if [ `echo $?` -eq 1 ]
+then
+  echo 'export PATH=$PATH:~/ocp-k10/aro-k10' >> ~/.bashrc && source ~/.bashrc
+fi
+
 rm openshift-client-linux.tar.gz
 
 ./createapp.sh
