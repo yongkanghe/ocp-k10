@@ -40,7 +40,7 @@ az aro create \
   --pull-secret @pull-secret.txt
 
 echo '-------Create a Azure Storage account'
-ARO_RG=$(az group list -o table | grep aro-rg4yong1 | awk '{print $1}')
+ARO_RG=$(az group list -o table | grep $ARO_MY_GROUP | awk '{print $1}')
 az storage account create -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID -g $ARO_RG -l $ARO_MY_LOCATION --sku Standard_LRS
 echo $(az storage account keys list -g $ARO_RG -n $ARO_MY_PREFIX$ARO_AZURE_STORAGE_ACCOUNT_ID --query [].value -o tsv | head -1) > aro_az_storage_key
 
