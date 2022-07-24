@@ -15,18 +15,6 @@ AZURE_CLIENT_SECRET=$(cat aro4yong1app | grep password | awk '{print $2}' | sed 
 
 echo '-------Set the default sc & vsc'
 oc annotate volumesnapshotclass csi-azuredisk-vsc k10.kasten.io/is-snapshot-class=true
-# cat <<EOF | kubectl apply -f -
-# apiVersion: snapshot.storage.k8s.io/v1
-# kind: VolumeSnapshotClass
-# metadata:
-#   annotations:
-#     k10.kasten.io/is-snapshot-class: "true"
-#   name: csi-azuredisk-vsc
-# driver: disk.csi.azure.com
-# deletionPolicy: Delete
-# parameters:
-#   incremental: "true"
-# EOF
 oc annotate sc managed-premium storageclass.kubernetes.io/is-default-class-
 oc annotate sc managed-csi storageclass.kubernetes.io/is-default-class=true
 
