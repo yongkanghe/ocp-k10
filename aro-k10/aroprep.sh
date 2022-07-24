@@ -7,8 +7,10 @@ ln -s oc kubectl
 cat ~/.bashrc | grep aro-k10
 if [ `echo $?` -eq 1 ]
 then
-  echo 'export PATH=$PATH:~/ocp-k10/aro-k10' >> ~/.bashrc && source ~/.bashrc
+  echo 'export PATH=$PATH:~/ocp-k10/aro-k10' >> ~/.bashrc
 fi
+
+source ~/.bashrc
 
 rm openshift-client-linux.tar.gz
 
