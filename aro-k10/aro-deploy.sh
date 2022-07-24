@@ -57,6 +57,15 @@ echo "" | awk '{print $1}'
 oc get no
 echo "" | awk '{print $1}'
 
+aroui=$(az aro list | grep $ARO_MY_CLUSTER | awk '{print $6}')
+echo -e "\nCopy the password before clicking the link to access OpenShift Web Console" > aro_ui_token
+echo -e "\nThe Username is kubeadmin and the Password is as below" >> aro_ui_token
+echo -e "\n$PASSWORD" >> aro_ui_token
+echo -e "\nThe OpenShift Web Console is as below" >> aro_ui_token
+echo -e "\n$aroui" >> aro_ui_token
+cat aro_ui_token
+echo "" | awk '{print $1}'
+
 endtime=$(date +%s)
 duration=$(( $endtime - $starttime ))
 echo "-------Total time to build an ARO Cluster is $(($duration / 60)) minutes $(($duration % 60)) seconds."
