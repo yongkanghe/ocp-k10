@@ -55,7 +55,6 @@ apiServer=$(az aro show -g $ARO_MY_PREFIX-$ARO_MY_GROUP -n $ARO_MY_CLUSTER --que
 oc login $apiServer -u kubeadmin -p $PASSWORD --insecure-skip-tls-verify
 echo "" | awk '{print $1}'
 oc get no
-echo "" | awk '{print $1}'
 
 aroui=$(az aro list | grep $ARO_MY_CLUSTER | awk '{print $6}')
 echo -e "\nCopy the password before clicking the link to access OpenShift Web Console" > aro_ui_token
