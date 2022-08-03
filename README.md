@@ -30,14 +30,14 @@
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mjG-GOnJ-Lo/0.jpg)](https://www.youtube.com/watch?v=mjG-GOnJ-Lo)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
+# Kubernetes / Kasten Learning
+http://k8s.yongkang.cloud
+
+# Earn Kubernetes Badges
+https://lnkd.in/gstxxkBU
+
 # Kasten - No. 1 Kubernetes Backup
 https://kasten.io 
-
-# Free Kubernetes Learning
-https://learning.kasten.io 
-
-# Kasten - DevOps tool of the month July 2021
-http://k10.yongkang.cloud
 
 # Contributors
 
