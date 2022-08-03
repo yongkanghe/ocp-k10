@@ -1,6 +1,6 @@
 echo "-------Install Helm if not exist"
 which helm
-if [ `echo $?` -eq 0 ]; then
+if [ `echo $?` -eq 1 ]; then
   #helm init --stable-repo-url https://charts.helm.sh/stable
   wget https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
   tar zxf helm-v3.7.1-linux-amd64.tar.gz
