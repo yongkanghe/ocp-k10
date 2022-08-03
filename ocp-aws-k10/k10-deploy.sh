@@ -54,7 +54,9 @@ k10ui=http://$(kubectl get route -n kasten-io | grep k10-route | awk '{print $2}
 echo -e "\nCopy/Paste the link to browser to access K10 Web UI" >> ocp_aws_token
 echo -e "\n$k10ui" >> ocp_aws_token
 echo "" | awk '{print $1}' >> ocp_aws_token
-sa_secret=$(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}{'\n'}" --namespace kasten-io)
+sa_secret=$(kubectl get serviceaccount k10-k10 -o json -n kasten-io | grep k10-k10-token | awk '{print $2}' | sed -e 's/\"//g')
+# sa_secret=$(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}{'\n'}" --namespace kasten-io)
+
 echo "Copy/Paste the token below to Signin K10 Web UI" >> ocp_aws_token
 echo "" | awk '{print $1}' >> ocp_aws_token
 kubectl get secret $sa_secret --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode | awk '{print $1}' >> ocp_aws_token
