@@ -74,11 +74,14 @@ https://blog.kasten.io/kubernetes-backup-with-openshift-container-storage
 
 https://blog.kasten.io/kasten-and-red-hat-migration-and-backup-for-openshift
 
+# Kubernetes / Kasten Learning
+http://k8s.yongkang.cloud
+
+# Earn Kubernetes Badges
+https://lnkd.in/gpptXmnY
+
 # Kasten - No. 1 Kubernetes Backup
 https://kasten.io 
-
-# Kasten - DevOps tool of the month July 2021
-http://k10.yongkang.cloud
 
 # Contributors
 
