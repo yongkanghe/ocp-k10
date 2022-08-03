@@ -34,7 +34,7 @@
 http://k8s.yongkang.cloud
 
 # Earn Kubernetes Badges
-https://lnkd.in/gstxxkBU
+https://lnkd.in/gpptXmnY
 
 # Kasten - No. 1 Kubernetes Backup
 https://kasten.io 
