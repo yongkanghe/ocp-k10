@@ -1,77 +1,68 @@
 #### Follow [@YongkangHe](https://twitter.com/yongkanghe) on Twitter, Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-I just want to build an Azure Red Hat OpenShift Cluster to play with the various Data Management capabilities e.g. Container's Backup/Restore, Disaster Recovery and Application Mobility. 
+I just want to build a Red Hat OpenShift Service on AWS (aka ROSA) to learn the various Data Management capabilities e.g. Backup/Restore, Disaster Recovery and Application Mobility. It is challenging to create a ROSA cluster if you are not familiar to it. After the ROSA Cluster is up running, we still need to install Kasten, create a sample DB, create policies etc.. The whole process is not that simple.
 
-It is challenging to create an ARO cluster from Azure Cloud if you are not familiar to it. After the ARO Cluster is up running, we still need to install Kasten, create a sample DB, create policies etc.. The whole process is not that simple.
+![image](https://pbs.twimg.com/media/FGZd5pBVgAE4Rp3?format=png&name=small)
 
-![image](https://pbs.twimg.com/media/FYfpuo1WIAEu8BZ?format=jpg&name=small)
+This script based automation allows you to build a ready-to-use Kasten K10 demo environment on a running Red Hat OpenShift Service on AWS Cloud in 3 minutes. If you don't have a ROSA Cluster, you can watch the Youtube video and follow the guide to build a ROSA cluster on AWS Cloud. Once the ROSA Cluster is up running, you can proceed to the next steps. 
 
-This script based automation allows you to build a Ready-to-Use Kasten K10 demo environment running on ARO Cluster on Azure in about 35 minutes. In order to demonstrate Container Backup capabilities, an Azure Blob Storage account will be created. And this will be built in a new vnet with new subnets etc.. This is bash shell based scripts which has been tested on Azure Cloud Shell in the West US region. 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/amLN6-JxygU/0.jpg)](https://www.youtube.com/watch?v=amLN6-JxygU)
+#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # Here're the prerequisities. 
-1. Log in to https://portal.azure.com, then open Azure Cloud Shell
+1. Log in to the terminal where you can access the OpenShift Cluster via oc
 2. Clone the github repo to your local host, run below command
 ````
 git clone https://github.com/yongkanghe/ocp-k10.git
 ````
 3. Complete the preparation tasks first
 ````
-cd ocp-k10/aro-k10;./aroprep.sh
+cd ocp-k10/ocp-aws-k10;./ocp-aws-prep.sh
 ````
-4. Optionally, you can customize the clustername, worker flavor, zone, region, bucketname etc.
+4. Optionally, you can customize region, bucketname, object storage profile etc.
 ````
 vim setenv.sh
 ````
+ 
+# To build the labs, run 
+````
+./k10-deploy.sh
+````
+1. Install Kasten K10
+2. Deploy a Postgresql database
+3. Create a AWS S3 location profile
+4. Create a backup policy
+5. Run an on-demand backup job
 
-# Deploy based on your needs
+# To delete the labs, run 
+````
+./k10-destroy.sh
+````
+1. Remove Postgresql Database
+2. Remove Kasten K10
+3. Remove all the relevant disks
+4. Remove all the relevant snapshots
+5. Remove the objects from the bucket
 
-| Don't have an ARO cluster | Already have an ARO cluster      | Have nothing                     |
-|---------------------------|----------------------------------|----------------------------------|
-| Deploy ARO only           | Deploy K10 only                  | Deploy ARO and K10               |
-| ``` ./aro-deploy.sh ```   | ``` ./k10-deploy.sh ```          | ``` ./deploy.sh ```              |
-| 1. Create an ARO Cluster  |                                  | 1. Create an ARO Cluster         |
-|                           | 1. Install Kasten K10            | 2. Install Kasten K10            |
-|                           | 2. Deploy a PostgreSQL database  | 3. Deploy a PostgreSQL database  |
-|                           | 3. Create an Azure Blob location | 4. Create an Azure Blob location |
-|                           | 4. Create a backup policy        | 5. Create a backup policy        |
-|                           | 5. Kick off on-demand backup job | 6. Kick off on-demand backup job |
-
-# Destroy based on your needs
-
-| Destroy ARO only          | Destroy K10 only                     | Destroy ARO and K10                 |
-|---------------------------|--------------------------------------|-------------------------------------|
-| ``` ./aro-destroy.sh ```  | ``` ./k10-destroy.sh ```             | ``` ./destroy.sh ```                |
-| 1. Remove the ARO Cluster |                                      | 1. Remove the Resource Group        |
-|                           | 1. Remove PostgreSQL database        |    + Remove ARO Kubernetes Cluster  |
-|                           | 2. Remove Kasten K10                 |    + Remove the disks and snapshots |
-|                           | 3. Remove Azure Blob storage bucket  |    + Remove the storage account etc.|
-
-# Learn how to automate OCP, OCS, MongoDB and K10.
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/HohBSwDjtmM/0.jpg)](https://www.youtube.com/watch?v=HohBSwDjtmM)
-#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
-
-# Learn how to build an OCP cluster via Web Console
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/FDvY9PSxgAQ/0.jpg)](https://www.youtube.com/watch?v=FDvY9PSxgAQ)
-#### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
-
-# Learn how to backup/restore containers on OCP Cluster
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/zMKIOCuEPyI/0.jpg)](https://www.youtube.com/watch?v=zMKIOCuEPyI)
+# 3 minutes to protect containers on ROSA Cluster
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/WDC20GQWjtE/0.jpg)](https://www.youtube.com/watch?v=WDC20GQWjtE)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # Learn how to migrate containers on OCP Cluster
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mjG-GOnJ-Lo/0.jpg)](https://www.youtube.com/watch?v=mjG-GOnJ-Lo)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# For more details about OCP Backup and Restore
+# OpenShift Backup and Restore
 https://blog.kasten.io/kubernetes-backup-with-openshift-container-storage
 
-https://blog.kasten.io/kasten-and-red-hat-migration-and-backup-for-openshift
+# Kubernetes / Kasten Learning
+http://k8s.yongkang.cloud
+
+# Earn Kubernetes Badges
+https://lnkd.in/gstxxkBU
 
 # Kasten - No. 1 Kubernetes Backup
 https://kasten.io 
-
-# Free Kubernetes Learning
-https://lnkd.in/gstxxkBU
 
 # Contributors
 
