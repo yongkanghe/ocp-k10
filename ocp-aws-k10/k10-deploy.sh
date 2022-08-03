@@ -3,8 +3,8 @@ starttime=$(date +%s)
 . ./setenv.sh
 # MY_PREFIX=$(echo $(whoami) | sed -e 's/\_//g' | sed -e 's/\.//g' | awk '{print tolower($0)}')
 
-# export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1 | sed -e 's/\"//g') 
-# export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1 | sed -e 's/\"//g')
+export AWS_ACCESS_KEY_ID=$(cat awsaccess | head -1 | sed -e 's/\"//g') 
+export AWS_SECRET_ACCESS_KEY=$(cat awsaccess | tail -1 | sed -e 's/\"//g')
 
 echo '-------Set the default sc & vsc'
 oc annotate volumesnapshotclass csi-aws-vsc k10.kasten.io/is-snapshot-class=true
