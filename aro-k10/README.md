@@ -46,8 +46,8 @@ vim setenv.sh
 |                           | 2. Remove Kasten K10                 |    + Remove the disks and snapshots |
 |                           | 3. Remove Azure Blob storage bucket  |    + Remove the storage account etc.|
 
-# Learn how to automate OCP, OCS, MongoDB and K10.
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/HohBSwDjtmM/0.jpg)](https://www.youtube.com/watch?v=HohBSwDjtmM)
+# Learn how to automate ARO, PostgreSQL and K10.
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/52OESS1h2F0/0.jpg)](https://www.youtube.com/watch?v=52OESS1h2F0)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
 # Learn how to build an OCP cluster via Web Console
