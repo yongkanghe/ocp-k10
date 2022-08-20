@@ -21,6 +21,7 @@ echo -n "Click the link to Log into Red Hat Cloud Console https://console.redhat
 # echo -n "\nClick OpenShift, Click Downloads, Scroll down to the bottom"
 echo "" | awk '{print $1}'
 echo -n "Click "Copy pull secret" button, Paste your pull secret and press [ENTER]: "
+echo "" | awk '{print $1}'
 read pullsecret
 echo "" | awk '{print $1}'
 echo $pullsecret > pull-secret.txt
