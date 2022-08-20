@@ -46,19 +46,19 @@ vim setenv.sh
 |                           | 2. Remove Kasten K10                 |    + Remove the disks and snapshots |
 |                           | 3. Remove Azure Blob storage bucket  |    + Remove the storage account etc.|
 
-# Learn how to automate ARO, PostgreSQL and K10.
+# Automate ARO, PostgreSQL and K10
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/52OESS1h2F0/0.jpg)](https://www.youtube.com/watch?v=52OESS1h2F0)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# Learn how to build an OCP cluster via Web Console
+# Build an OCP cluster via Web Console
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/FDvY9PSxgAQ/0.jpg)](https://www.youtube.com/watch?v=FDvY9PSxgAQ)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# Learn how to backup/restore containers on OCP Cluster
+# Backup/restore containers on OCP Cluster
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/zMKIOCuEPyI/0.jpg)](https://www.youtube.com/watch?v=zMKIOCuEPyI)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
-# Learn how to migrate containers on OCP Cluster
+# Migrate containers on OCP Cluster
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mjG-GOnJ-Lo/0.jpg)](https://www.youtube.com/watch?v=mjG-GOnJ-Lo)
 #### Subscribe [K8s Data Management](https://www.youtube.com/channel/UCm-sw1b23K-scoVSCDo30YQ?sub_confirmation=1) Youtube Channel
 
