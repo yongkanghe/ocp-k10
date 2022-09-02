@@ -18,7 +18,7 @@ helm repo update
 
 #For Production, remove the lines ending with =1Gi from helm install
 #For Production, remove the lines ending with airgap from helm install
-helm install k10 kasten/k10 --namespace=kasten-io \
+helm install k10 kasten/k10 --version=5.0.6 --namespace=kasten-io \
     --set global.persistence.metering.size=1Gi \
     --set prometheus.server.persistentVolume.size=1Gi \
     --set global.persistence.catalog.size=1Gi \
@@ -38,6 +38,7 @@ kubectl config set-context --current --namespace kasten-io
 echo '-------Deploying a PostgreSQL database'
 kubectl create namespace yong-postgresql
 oc adm policy add-scc-to-user anyuid -z default -n yong-postgresql
+# oc adm policy add-scc-to-user anyuid -z default -n yong-postgresql-new
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install --namespace yong-postgresql postgres bitnami/postgresql \
   --set primary.persistence.size=1Gi
