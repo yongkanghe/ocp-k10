@@ -11,7 +11,7 @@ echo $MY_BUCKET-$(date +%s) > rosa_bucketname
 echo '-------Install K10'
 kubectl create ns kasten-io
 helm repo add kasten https://charts.kasten.io/
-helm install k10 kasten/k10 --namespace=kasten-io \
+helm install k10 kasten/k10 --version=5.0.6 --namespace=kasten-io \
     --set global.persistence.metering.size=1Gi \
     --set prometheus.server.persistentVolume.size=1Gi \
     --set global.persistence.catalog.size=1Gi \
@@ -30,6 +30,7 @@ kubectl config set-context --current --namespace kasten-io
 
 echo '-------Annotate the volumesnapshotclass'
 oc annotate volumesnapshotclass csi-aws-vsc k10.kasten.io/is-snapshot-class=true
+oc annotate volumesnapshotclass csi-aws-vsc snapshot.storage.kubernetes.io/is-default-class-
 
 echo '-------Deploying a MongoDB database'
 kubectl create namespace k10-mongodb
