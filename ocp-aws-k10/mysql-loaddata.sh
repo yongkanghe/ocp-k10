@@ -1,4 +1,4 @@
-#Create a DB, Table and insert data
+#Create a DB, Table and insert data from the source cluster
 oc exec -ti mysql-0 -n yong-mysql -c mysql -- bash
 mysql --user=root --password=password4yong1
 CREATE DATABASE db4yong1;
