@@ -42,3 +42,6 @@ spec:
         requests:
           storage: 1Gi
 EOF
+
+#Sidecar injection
+./sidecar-injection.sh
